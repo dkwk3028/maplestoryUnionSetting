@@ -1,0 +1,17 @@
+﻿<Page x:Class="MapleStroyUnionSetProject.outputPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:MapleStroyUnionSetProject"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="outputPage">
+
+    <Grid>
+        <Border HorizontalAlignment="Left" VerticalAlignment="Top" BorderBrush="Black" BorderThickness="2" Margin="23,10,0,0" Width="445" Height="405" Background="White">
+            <Grid x:Name = "outputGrid" HorizontalAlignment="Left" Height="400" Margin="0,0,0,0" VerticalAlignment="Top" Width="440" Grid.Row="20" Grid.Column="22" Grid.RowSpan="20" Grid.ColumnSpan="22" ShowGridLines="False" Cursor="Pen"/>
+        </Border>
+
+    </Grid>
+</Page>

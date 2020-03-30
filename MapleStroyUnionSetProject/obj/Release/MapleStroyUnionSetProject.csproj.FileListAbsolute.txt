@@ -1,0 +1,15 @@
+C:\Users\강현우\source\repos\MapleStroyUnionSetProject\MapleStroyUnionSetProject\bin\Release\MapleStroyUnionSetProject.exe.config
+C:\Users\강현우\source\repos\MapleStroyUnionSetProject\MapleStroyUnionSetProject\bin\Release\MapleStroyUnionSetProject.exe
+C:\Users\강현우\source\repos\MapleStroyUnionSetProject\MapleStroyUnionSetProject\bin\Release\MapleStroyUnionSetProject.pdb
+C:\Users\강현우\source\repos\MapleStroyUnionSetProject\MapleStroyUnionSetProject\obj\Release\MapleStroyUnionSetProject.csprojAssemblyReference.cache
+C:\Users\강현우\source\repos\MapleStroyUnionSetProject\MapleStroyUnionSetProject\obj\Release\MainWindow.g.cs
+C:\Users\강현우\source\repos\MapleStroyUnionSetProject\MapleStroyUnionSetProject\obj\Release\App.g.cs
+C:\Users\강현우\source\repos\MapleStroyUnionSetProject\MapleStroyUnionSetProject\obj\Release\MapleStroyUnionSetProject_MarkupCompile.cache
+C:\Users\강현우\source\repos\MapleStroyUnionSetProject\MapleStroyUnionSetProject\obj\Release\MapleStroyUnionSetProject_MarkupCompile.lref
+C:\Users\강현우\source\repos\MapleStroyUnionSetProject\MapleStroyUnionSetProject\obj\Release\MainWindow.baml
+C:\Users\강현우\source\repos\MapleStroyUnionSetProject\MapleStroyUnionSetProject\obj\Release\MapleStroyUnionSetProject.g.resources
+C:\Users\강현우\source\repos\MapleStroyUnionSetProject\MapleStroyUnionSetProject\obj\Release\MapleStroyUnionSetProject.Properties.Resources.resources
+C:\Users\강현우\source\repos\MapleStroyUnionSetProject\MapleStroyUnionSetProject\obj\Release\MapleStroyUnionSetProject.csproj.GenerateResource.cache
+C:\Users\강현우\source\repos\MapleStroyUnionSetProject\MapleStroyUnionSetProject\obj\Release\MapleStroyUnionSetProject.csproj.CoreCompileInputs.cache
+C:\Users\강현우\source\repos\MapleStroyUnionSetProject\MapleStroyUnionSetProject\obj\Release\MapleStroyUnionSetProject.exe
+C:\Users\강현우\source\repos\MapleStroyUnionSetProject\MapleStroyUnionSetProject\obj\Release\MapleStroyUnionSetProject.pdb
