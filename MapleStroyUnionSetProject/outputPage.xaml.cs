@@ -89,7 +89,7 @@ namespace MapleStroyUnionSetProject {
                 Grid.SetColumn(btn, i % 22);
                 outputGrid.Children.Add(btn);
 
-                SingletonButtonArray.btnArray[i] = false;
+                //SingletonButtonArray.btnArray[i] = false;
 
             }
         }

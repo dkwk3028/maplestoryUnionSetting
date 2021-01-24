@@ -4,17 +4,17 @@
 exe
 C#
 .cs
-C:\Users\강현우\source\repos\MapleStroyUnionSetProject\MapleStroyUnionSetProject\obj\Release\
+C:\Users\강현우\Desktop\cs\maplestoryUnionSetting\MapleStroyUnionSetProject\obj\Release\
 MapleStroyUnionSetProject
 none
 false
 TRACE
-C:\Users\강현우\source\repos\MapleStroyUnionSetProject\MapleStroyUnionSetProject\App.xaml
-11151548125
+C:\Users\강현우\Desktop\cs\maplestoryUnionSetting\MapleStroyUnionSetProject\App.xaml
+3-533399337
 
-61352567531
+8246566861
 13-1505183044
-MainWindow.xaml;
+mainPage.xaml;MainWindow.xaml;outputPage.xaml;
 
 False
 

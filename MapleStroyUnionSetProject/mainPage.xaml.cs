@@ -96,11 +96,16 @@ namespace MapleStroyUnionSetProject {
                 //MessageBox.Show(btn.Name);
                 btn.Content = c;
                 btn.Click += Button_Toggle_Click;
+                if (SingletonButtonArray.btnArray[i]) {
+                    SingletonButtonArray.btnArray[i] = false;
+                    Button_Toggle_Click(btn, null); // 다시 토글되서 나옴.
+                }
+
                 Grid.SetRow(btn, i / 22);
                 Grid.SetColumn(btn, i % 22);
                 unionGrid.Children.Add(btn);
 
-                SingletonButtonArray.btnArray[i] = false;
+                //SingletonButtonArray.btnArray[i] = false;  ==> bool 의 기본값은 false 임 + 이전 상태값 저장.
 
             }
         }
@@ -167,12 +172,14 @@ namespace MapleStroyUnionSetProject {
             if (!b_green) {
                 btn.Background = new SolidColorBrush(Color.FromArgb(255, 122, 230, 146));
                 SingletonButtonArray.btnArray[index] = !b_green;
-                SingletonButtonArray.count += 1;
+                if(e != null) //직접 실행
+                    SingletonButtonArray.count += 1;
                 UpdateCountLable();
             } else {
                 btn.Background = Brushes.White;
                 SingletonButtonArray.btnArray[index] = !b_green;
-                SingletonButtonArray.count -= 1;
+                if(e != null)
+                    SingletonButtonArray.count -= 1;
                 UpdateCountLable();
             }
         }
@@ -252,6 +259,7 @@ namespace MapleStroyUnionSetProject {
 
         }
 
+        // 계산 버튼
         private void calcButton_Click(object sender, RoutedEventArgs e) {
             UnionCalculator unionCalculator = new UnionCalculator();
 
@@ -265,6 +273,7 @@ namespace MapleStroyUnionSetProject {
                 MessageBox.Show("보유칸 또는 점령칸이 0칸 입니다. 설정해주세요!");
                 return;
             }
+            SingletonUnionOutputArray.Clear();
 
             unionCalculator.CalcUnion();
             Console.WriteLine("연산 끝!");

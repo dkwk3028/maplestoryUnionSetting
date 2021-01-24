@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+
 
 namespace MapleStroyUnionSetProject {
 
@@ -12,13 +14,22 @@ namespace MapleStroyUnionSetProject {
         public static int[] btnArray = new int[btnSize];
         public static int count = 0;
 
+        public static void Clear() {
+            count = 0;
+            btnArray = new int[btnSize];
+        }
     }
     public static class SingletonButtonArray {
 
         private const int btnSize = 440;
         public static bool[] btnArray = new bool[btnSize];
-        public static int count = 0;
+        public static int count = btnSize;
 
+        static SingletonButtonArray() {
+            for (int i=0; i<btnSize; ++i) {
+                btnArray[i] = true;
+            }
+        }
         public static void printBtnArray() {
             for(int i=0; i<btnSize; ++i) {
                 if (i > 0 && i % 22 == 0) {
@@ -27,6 +38,11 @@ namespace MapleStroyUnionSetProject {
                 Console.Write("{0}", btnArray[i] ? 1 : 0);
             }
             Console.Write("\n");
+        }
+
+        public static void Clear() {
+            count = 0;
+            btnArray = new bool[btnSize];
         }
     }
 
@@ -37,7 +53,16 @@ namespace MapleStroyUnionSetProject {
         public static int count = 0;
         public static int realCount = 0;
     }
+    
 
+    struct CalcResult {
+        public bool suc;
+        public bool error;
+
+        public void Clear() {
+            suc = error = false;
+        }
+    }
     class UnionBlock {
         public int width, height;
         public int[,] shape;
@@ -78,7 +103,8 @@ namespace MapleStroyUnionSetProject {
         private List<Point> loopPoints;
         private int[,] LabelMap;
         private int[,] CountMap;
-
+        private static int calcCount = 0;
+        private CalcResult calcResult;
  
         public UnionCalculator() {
 
@@ -160,6 +186,7 @@ namespace MapleStroyUnionSetProject {
             }
 
             CreateLabelMap();
+            calcResult = new CalcResult();
         }
 
         private void CreateLabelMap() {
@@ -265,7 +292,19 @@ namespace MapleStroyUnionSetProject {
                     }
                 }
             }
+            calcCount = 0;
+            calcResult.Clear();
             RecursiveCalc(0,0, SingletonButtonArray.count, SingletonBlockArray.realCount, ref btnArray);
+            if (calcResult.error) {
+                MessageBox.Show("너무 복잡해서 찾지 못했습니다! (5000만번 이상 연산 실행)");
+                return;
+            }
+            if (calcResult.suc) {
+                MessageBox.Show("찾았습니다. 출력보기를 눌러보세요");
+            } else {
+                MessageBox.Show("찾지 못했습니다.");
+            }
+            //MessageBox.Show(calcCount.ToString());
 
         }
 
@@ -306,7 +345,15 @@ namespace MapleStroyUnionSetProject {
         public static int GetLabelBit(int num) {
             return num & 15;
         }
-        private bool RecursiveCalc(int depth, int nowIndex, int remainOccup, int remainBlock, ref int[] btnArray) {
+        private void RecursiveCalc(int depth, int nowIndex, int remainOccup, int remainBlock, ref int[] btnArray) {
+            calcCount++;
+            if (calcCount > 50000000) {
+                calcResult.error = true;
+                return;
+            }
+            if (calcResult.error) {
+                return;
+            }
             //Console.WriteLine("now is {0}", now);
             if (remainOccup == 0 || remainBlock == 0) {
                 if (remainBlock == 0) {
@@ -314,14 +361,20 @@ namespace MapleStroyUnionSetProject {
                     for (int i = 0; i < btnArraySize; ++i) {
                         SingletonUnionOutputArray.btnArray[i] = btnArray[i];
                     }
-                    return true;
+                    calcResult.suc = true;
+                    return;
+                    //return true;
                 } else {
-                    return false;
+                    calcResult.suc = false;
+                    return;
+                    //return false;
                 }
             }
             if (remainOccup < SingletonBlockArray.count) {
                 //Console.WriteLine("없음!!!");
-                return false;
+                calcResult.suc = false;
+                return;
+                //return false;
             }
             //Console.WriteLine("{0}", depth);
             int btnPos = 0;
@@ -362,23 +415,29 @@ namespace MapleStroyUnionSetProject {
                                     SingletonBlockArray.count -= accessPoints[i].r + 1;
                                     //Console.WriteLine("{0} is ", SingletonBlockArray.Instance.GetCount());
 
-                                    bool b_end = RecursiveCalc(depth + 1,++nowIndex, remainOccup - (accessPoints[i].r + 1), remainBlock - 1, ref btnArray);
+                                    RecursiveCalc(depth + 1,++nowIndex, remainOccup - (accessPoints[i].r + 1), remainBlock - 1, ref btnArray);
                                     SetToNumberBtnArray(btnPos, 1, posLoop, accessPoints[i].r, accessPoints[i].c, ref btnArray);
                                     unionBlockList[accessPoints[i].r][accessPoints[i].c][0].count += 1;
                                     SingletonBlockArray.count += accessPoints[i].r + 1;
-                                    if (b_end) {
-                                        return true;
+                                    if (calcResult.error) {
+                                        return;
+                                    }
+
+                                    if (calcResult.suc) {
+                                        return;
                                     } else {
                                         break;
                                     }
                                 }
+
                             }
                         }
                     }
                     --remainOccup;
                 }
             }
-            return false;
+            calcResult.suc = false;
+            return;
         }
 
         private int GetBlockCountByIndex(int index) {
